@@ -1,0 +1,43 @@
+{
+  "name": "expressjs-tutorials",
+  "version": "1.0.0",
+  "description": "Tutorials for ExpressJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Hello",
+    "world",
+    "Routing",
+    "HTTP",
+    "Methods",
+    "URL",
+    "Building",
+    "Middleware",
+    "Templating",
+    "Static",
+    "Files",
+    "Form",
+    "Data",
+    "Database",
+    "Cookies",
+    "Sessions",
+    "Authentication",
+    "RESTful",
+    "APIs",
+    "Scaffolding",
+    "Error",
+    "handling",
+    "Debugging"
+  ],
+  "author": "lp devs",
+  "license": "ISC",
+  "dependencies": {
+    "express": "~4.12.0",
+    "jade": "~1.9.2",
+    "ws": ">=2.2.1",
+    "body-parser": "~1.12.0",
+    "cookie-parser": "~1.3.4"
+  }
+}

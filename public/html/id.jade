@@ -1,0 +1,13 @@
+doctype html
+html
+  head
+    title= 'Page ID'
+  body
+    include ./header.jade
+    if(typeof(id_params) !== 'undefined')
+      div.
+        The id you specified is: #{id_params}
+    else
+      div.
+        The id you specified is: underfined
+    include ./footer.jade
