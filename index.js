@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var constants = require('./constants')
 var routers = require('./routers');
 
+// configure app
 var app = express();
 
 // set view engine
