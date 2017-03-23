@@ -1,6 +1,16 @@
 var express = require('express');
 var router = express.Router();
 
+// configure database
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/my_db');
+var personSchema = mongoose.Schema({
+    name: String,
+    age: Number,
+    nationality: String
+});
+var Person = mongoose.model('Person', personSchema);
+
 /*
  * router.METHOD(route, callback)
  * TODO: tell what to do when a get request at the given route is called.
@@ -121,6 +131,43 @@ router.post('/login', function(req, res){
 router.get('/logout/:id', function(req, res){
   Users[req.params.id].valid = 0;
   res.redirect('/login');
+});
+
+// test with database
+router.get('/person', function(req, res){
+  res.render('person');
+});
+
+router.post('/person', function(req, res){
+  var personInfo = req.body;
+  if( !personInfo.name || !personInfo.age || !personInfo.nationality){
+    res.send('Sorry, you provided wrong info');
+  }else{
+    var newPerson = new Person({
+      name: personInfo.name,
+      age: personInfo.age,
+      nationality: personInfo.nationality
+    });
+
+    newPerson.save(function(err, res2){
+      console.log(res2);
+      if(err) res.send('Database error');
+      else res.send('New person added');
+    });
+  }
+});
+
+router.get('/people', function(req, res){
+  Person.find(function(err, res2){
+    res.json(res2);
+  });
+});
+
+router.put('/people/:id', function(req, res){
+  Person.findByIdAndUpdate(req.params.id, req.body, function(err, res2){
+    if(err) res.json({message: 'Error in updating person with id: ' + req.params.id});
+    else res.json(res2);
+  });
 });
 
 module.exports = router;
